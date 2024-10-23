@@ -1,6 +1,5 @@
 import {
   IconGift,
-  IconSettings,
   IconReceipt2,
   IconShare,
 } from '@tabler/icons-react';
@@ -19,18 +18,26 @@ function SidebarLinks() {
   }
 
   const links = {
-    account: [
+    student: [
       { link: '/dashboard', label: 'Cursos disponibles', icon: IconGift },
-      { link: '/dashboard/payment-history', label: 'Historial', icon: IconReceipt2 },
+      // { link: '/dashboard/payment-history', label: 'Historial', icon: IconReceipt2 },
       { link: '/dashboard/contact', label: 'Contactános', icon: IconShare },
+      // { link: '/dashboard/settings', label: 'Configuración', icon: IconSettings },
+    ],
+    admin: [
+      { link: '/admin', label: 'Crear nuevo curso', icon: IconGift },
+      { link: '/admin/reports', label: 'Reportes', icon: IconReceipt2 },
+      // { link: '/admin/questions', label: 'Feedback de los usuarios', icon: IconShare },
       // { link: '/dashboard/settings', label: 'Configuración', icon: IconSettings },
     ],
   }
 
+  const selectByRoute = window.location.pathname.startsWith('/admin') ? 'admin' : 'student'
+
   return (
     <>
       {
-        links.account.map((item) => (
+        links[selectByRoute].map((item) => (
           <Link
             className={classes.link}
             data-active={item.label === active || undefined}

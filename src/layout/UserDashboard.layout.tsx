@@ -12,6 +12,7 @@ function UserDashboardLayout({ children }: IUserDashboardLayout) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
   
+  const selectByRoute = window.location.pathname.startsWith('/admin') ? 'PANEL ADMINISTRATIVO' : 'MIS CURSOS'
   return (
     <AppShell
       header={{ height: 60 }}
@@ -36,7 +37,7 @@ function UserDashboardLayout({ children }: IUserDashboardLayout) {
             email='javierdiazt406@gmail.com'
           />
         </Card>
-        <Text fz={14} fw={700} mt={10}>MIS CURSOS</Text>
+        <Text fz={14} fw={700} mt={10}>{selectByRoute}</Text>
         <SidebarLinks />
       </AppShell.Navbar>
       <AppShell.Main>

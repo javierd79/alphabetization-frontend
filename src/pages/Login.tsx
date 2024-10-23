@@ -16,7 +16,7 @@ function Login() {
     }).then((res) => {
       setIsError(false)
       localStorage.setItem('token', res.data.token)
-      window.location.href = '/dashboard'
+      res.data.user.role !== 'Student' ? window.location.href = '/admin' : window.location.href = '/dashboard'
     }).catch(() => {
       setIsError(true)
     })

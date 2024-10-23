@@ -1,23 +1,29 @@
-import { IconCalendar, IconClock } from '@tabler/icons-react';
-import { Card, Text, Group, Center, rem, useMantineTheme } from '@mantine/core';
+import { IconCalendar } from '@tabler/icons-react';
+import { Card, Text, Group, Center, rem, useMantineTheme, Button } from '@mantine/core';
 import classes from './CardCourses.module.css';
 
 interface ICardCourses {
   link?: string;
-  hour?: string;
   title?: string;
+  reports?: boolean;
   location?: string;
   initDate?: string;
   imageUrl?: string;
+  onReports?: () => void;
+  isSubscripted?: boolean;
+  onSubscript?: () => void;
 }
 
 function CardCourses({
   link,
-  hour,
   title,
   location,
   initDate,
   imageUrl,
+  onReports,
+  onSubscript,
+  isSubscripted,
+  reports = false
 }: ICardCourses) {
   const theme = useMantineTheme();
 
@@ -29,6 +35,7 @@ function CardCourses({
       href={link}
       component="a"
       className={classes.card}
+      onClick={reports ? onReports : undefined}
     >
       <div
         className={classes.image}
@@ -62,14 +69,14 @@ function CardCourses({
                 </Text>
               </Center>
               <Center>
-                <IconClock
+                {/* <IconClock
                   style={{ width: rem(16), height: rem(16) }}
                   stroke={1.5}
                   color={theme.colors.dark[2]}
-                />
-                <Text size="sm" className={classes.bodyText}>
-                  {hour}
-                </Text>
+                /> */}
+                {
+                  !reports ? isSubscripted ? <Text c="dimmed" size='sm' mt={-2}>Suscrito</Text> : <Button size='xs' onClick={onSubscript}>Suscribete</Button> : <></>
+                }
               </Center>
             </Group>
           </Group>
